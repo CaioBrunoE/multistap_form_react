@@ -7,6 +7,8 @@ import Thanks from './components/Thanks'
 import './App.css'
 //Hooks
 import { useForm } from "./hooks/useForm"
+import Step from './components/Steps'
+import Steps from './components/Steps'
 
 function App() {
   const formComponents = [<UserForm />, <PreviewForm />, <Thanks />];
@@ -14,14 +16,13 @@ function App() {
   const { currentStep, currentComponent, changeStep, isLastStep, isFirtsStep } = useForm(formComponents);
 
   return (
-    <>
-
+    <div className='app'>
       <div className="header">
         <h2>Deixe sua avaliaç;ao</h2>
         <p>Ficamos felizes com a sua compra, ultilizer o formulario abaixo para avaçiar o produto</p>
       </div>
       <div className="form-container">
-        <p>etapas</p>
+        <Steps currentStep={currentStep}/>
         <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
           <div className="inputs-container">
             {currentComponent}
@@ -47,7 +48,7 @@ function App() {
           </div>
         </form>
       </div>
-    </>
+    </div>
   )
 }
 
